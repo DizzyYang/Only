@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="only_root_layout" type="id" />
+    <item name="only_statusbar_view" type="id" />
+    <item name="only_toolbar_view" type="id" />
+    <item name="only_state_view" type="id" />
+
+</resources>
