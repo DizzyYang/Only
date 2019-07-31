@@ -23,6 +23,7 @@ android {
             proguardFile('pro/proguard-gson.pro')
             proguardFile('pro/proguard-glide.pro')
             proguardFile('pro/proguard-brvah.pro')
+            proguardFile('pro/proguard-cglib.pro')
         }
     }
 }
