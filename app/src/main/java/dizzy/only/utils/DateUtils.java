@@ -18,9 +18,7 @@ public class DateUtils {
      * @return
      */
     public static String getCurrentTime() {
-        Date date = new Date(System.currentTimeMillis());
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        return sdf.format(date);
+        return getCurrentTime("yyyy-MM-dd HH:mm:ss");
     }
 
     /**
@@ -43,15 +41,7 @@ public class DateUtils {
      * @return
      */
     public static boolean compareLDate(String startDate, String endDate) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        try {
-            Date start = dateFormat.parse(startDate);
-            Date end = dateFormat.parse(endDate);
-            return start.getTime() < end.getTime();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
+        return compareLDate("yyyy-MM-dd HH:mm:ss", startDate, endDate);
     }
 
     /**
@@ -81,15 +71,7 @@ public class DateUtils {
      * @return
      */
     public static boolean compareGDate(String startDate, String endDate) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        try {
-            Date start = dateFormat.parse(startDate);
-            Date end = dateFormat.parse(endDate);
-            return start.getTime() > end.getTime();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
+        return compareGDate("yyyy-MM-dd HH:mm:ss", startDate, endDate);
     }
 
     /**
@@ -119,15 +101,7 @@ public class DateUtils {
      * @return
      */
     public static boolean compareEDate(String startDate, String endDate) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        try {
-            Date start = dateFormat.parse(startDate);
-            Date end = dateFormat.parse(endDate);
-            return start.getTime() == end.getTime();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
+        return compareEDate("yyyy-MM-dd HH:mm:ss", startDate, endDate);
     }
 
     /**
@@ -157,15 +131,7 @@ public class DateUtils {
      * @return
      */
     public static boolean compareLEDate(String startDate, String endDate) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        try {
-            Date start = dateFormat.parse(startDate);
-            Date end = dateFormat.parse(endDate);
-            return start.getTime() <= end.getTime();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
+        return compareLEDate("yyyy-MM-dd HH:mm:ss", startDate, endDate);
     }
 
     /**
@@ -195,15 +161,7 @@ public class DateUtils {
      * @return
      */
     public static boolean compareGEDate(String startDate, String endDate) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        try {
-            Date start = dateFormat.parse(startDate);
-            Date end = dateFormat.parse(endDate);
-            return start.getTime() >= end.getTime();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
+        return compareGEDate("yyyy-MM-dd HH:mm:ss", startDate, endDate);
     }
 
     /**

@@ -24,8 +24,8 @@ public interface IOnly {
     boolean onlyToastState();
 
     /**
-     * @return OkHttpClient
+     * @return OkHttpClient.Builder
      */
-    OkHttpClient onlyOkHttpClient();
+    OkHttpClient.Builder onlyOkHttpBuilder();
 
 }

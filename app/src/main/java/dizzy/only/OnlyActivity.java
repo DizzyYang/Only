@@ -83,7 +83,7 @@ public abstract class OnlyActivity<P extends OnlyPresenter> extends AppCompatAct
     @Override
     public P onlyPresenter() {
         if (mOnlyPresenter == null) {
-            mOnlyPresenter = OnlyHelper.getOnlyPresenter(this.getClass());
+            mOnlyPresenter = OnlyHelper.getOnlyPresenter(getClass());
         }
         return mOnlyPresenter;
     }

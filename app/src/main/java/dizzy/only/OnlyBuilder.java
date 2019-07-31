@@ -1,8 +1,7 @@
 package dizzy.only;
 
 import android.app.Activity;
-import android.support.annotation.ColorInt;
-import android.support.annotation.LayoutRes;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -66,15 +65,16 @@ public class OnlyBuilder {
      *
      * @param onlyBackground
      */
-    public void setOnlyBackground(@ColorInt int onlyBackground) {
+    public void setOnlyBackground(int onlyBackground) {
         this.mOnlyBackground = onlyBackground;
     }
 
     public int getOnlyBackground() {
-        if (mOnlyBackground != 0) {
-            return mOnlyBackground;
-        }
-        return mIOnlyView.onlyBackground();
+        return ContextCompat.getColor(OnlyHelper.getOnly(),
+                mOnlyBackground != 0
+                        ? mOnlyBackground
+                        : mIOnlyView.onlyBackground()
+        );
     }
 
     /**
@@ -108,15 +108,16 @@ public class OnlyBuilder {
      *
      * @param onlyStatusBarColor
      */
-    public void setOnlyStatusBarColor(@ColorInt int onlyStatusBarColor) {
+    public void setOnlyStatusBarColor(int onlyStatusBarColor) {
         this.mOnlyStatusBarColor = onlyStatusBarColor;
     }
 
     public int getOnlyStatusBarColor() {
-        if (mOnlyStatusBarColor != 0) {
-            return mOnlyStatusBarColor;
-        }
-        return mIOnlyView.onlyStatusBarColor();
+        return ContextCompat.getColor(OnlyHelper.getOnly(),
+                mOnlyStatusBarColor != 0
+                        ? mOnlyStatusBarColor
+                        : mIOnlyView.onlyStatusBarColor()
+        );
     }
 
     /**
@@ -137,15 +138,16 @@ public class OnlyBuilder {
      *
      * @param onlyToolbarColor
      */
-    public void setOnlyToolbarColor(@ColorInt int onlyToolbarColor) {
+    public void setOnlyToolbarColor(int onlyToolbarColor) {
         this.mOnlyToolbarColor = onlyToolbarColor;
     }
 
     public int getOnlyToolbarColor() {
-        if (mOnlyToolbarColor != 0) {
-            return mOnlyToolbarColor;
-        }
-        return mIOnlyView.onlyToolbarColor();
+        return ContextCompat.getColor(OnlyHelper.getOnly(),
+                mOnlyToolbarColor != 0
+                        ? mOnlyToolbarColor
+                        : mIOnlyView.onlyToolbarColor()
+        );
     }
 
     /**
@@ -166,7 +168,7 @@ public class OnlyBuilder {
      *
      * @param onlyLoadingId
      */
-    public void setOnlyLoadingId(@LayoutRes int onlyLoadingId) {
+    public void setOnlyLoadingId(int onlyLoadingId) {
         this.mOnlyLoadingId = onlyLoadingId;
     }
 
@@ -182,7 +184,7 @@ public class OnlyBuilder {
      *
      * @param onlyContentId
      */
-    public void setOnlyContentId(@LayoutRes int onlyContentId) {
+    public void setOnlyContentId(int onlyContentId) {
         this.mOnlyContentId = onlyContentId;
     }
 
@@ -195,7 +197,7 @@ public class OnlyBuilder {
      *
      * @param onlyEmptyId
      */
-    public void setOnlyEmptyId(@LayoutRes int onlyEmptyId) {
+    public void setOnlyEmptyId(int onlyEmptyId) {
         this.mOnlyEmptyId = onlyEmptyId;
     }
 
@@ -211,7 +213,7 @@ public class OnlyBuilder {
      *
      * @param onlyErrorId
      */
-    public void setOnlyErrorId(@LayoutRes int onlyErrorId) {
+    public void setOnlyErrorId(int onlyErrorId) {
         this.mOnlyErrorId = onlyErrorId;
     }
 

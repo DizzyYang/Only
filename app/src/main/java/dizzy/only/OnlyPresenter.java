@@ -28,7 +28,10 @@ public class OnlyPresenter<V> implements IOnlyPresenter<V> {
 
     @Override
     public V onlyView() {
-        return mOnlyView.get();
+        if(isOnlyAttached()){
+            return mOnlyView.get();
+        }
+        return OnlyHelper.getOnlyView(getClass());
     }
 
     @Override

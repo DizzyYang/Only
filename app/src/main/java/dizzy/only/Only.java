@@ -21,10 +21,11 @@ public class Only extends Application implements IOnly, IOnlyView {
     @Override
     public void onCreate() {
         super.onCreate();
+        OnlyHelper.setOnly(this);
         OnlyHelper.setIOnlyView(this);
         LogUtils.init(onlyLogState(), "Only");
         ToastUtils.init(onlyToastState(), this);
-        OkGo.getInstance().init(this).setOkHttpClient(onlyOkHttpClient());
+        OkGo.getInstance().init(this).setOkHttpClient(onlyOkHttpBuilder().build());
     }
 
     @Override
@@ -38,7 +39,7 @@ public class Only extends Application implements IOnly, IOnlyView {
     }
 
     @Override
-    public OkHttpClient onlyOkHttpClient() {
+    public OkHttpClient.Builder onlyOkHttpBuilder() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.readTimeout(OkGo.DEFAULT_MILLISECONDS, TimeUnit.MILLISECONDS);
         builder.writeTimeout(OkGo.DEFAULT_MILLISECONDS, TimeUnit.MILLISECONDS);
@@ -49,7 +50,7 @@ public class Only extends Application implements IOnly, IOnlyView {
             loggingInterceptor.setColorLevel(Level.INFO);
             builder.addInterceptor(loggingInterceptor);
         }
-        return builder.build();
+        return builder;
     }
 
     @Override

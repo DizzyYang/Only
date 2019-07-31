@@ -30,23 +30,6 @@ public class AppUtils {
     }
 
     /**
-     * 获取应用程序版本名
-     *
-     * @param context
-     * @return
-     */
-    public static String getVersionName(Context context) {
-        try {
-            PackageManager packageManager = context.getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
-            return packageInfo.versionName;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /**
      * 获取应用程序版本号
      *
      * @param context
@@ -57,6 +40,23 @@ public class AppUtils {
             PackageManager packageManager = context.getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
             return String.valueOf(packageInfo.versionCode);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 获取应用程序版本名
+     *
+     * @param context
+     * @return
+     */
+    public static String getVersionName(Context context) {
+        try {
+            PackageManager packageManager = context.getPackageManager();
+            PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+            return packageInfo.versionName;
         } catch (Exception e) {
             e.printStackTrace();
         }

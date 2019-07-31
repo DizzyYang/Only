@@ -92,7 +92,7 @@ public abstract class OnlyFragment<P extends OnlyPresenter> extends Fragment imp
     @Override
     public P onlyPresenter() {
         if (mOnlyPresenter == null) {
-            mOnlyPresenter = OnlyHelper.getOnlyPresenter(this.getClass());
+            mOnlyPresenter = OnlyHelper.getOnlyPresenter(getClass());
         }
         return mOnlyPresenter;
     }
