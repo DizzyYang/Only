@@ -2,6 +2,8 @@ package dizzy.only.impl;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.annotation.StringRes;
 import dizzy.only.OnlyPresenter;
 import dizzy.only.prompt.OnlyPromptDialog;
 
@@ -61,7 +63,7 @@ public interface IOnlyActivity<P extends OnlyPresenter> {
      * @param id
      * @param stringId
      */
-    void showEmpty(int id, int stringId);
+    void showEmpty(@IdRes int id, @StringRes int stringId);
 
     /**
      * 显示缺省
@@ -69,7 +71,7 @@ public interface IOnlyActivity<P extends OnlyPresenter> {
      * @param id
      * @param string
      */
-    void showEmpty(int id, String string);
+    void showEmpty(@IdRes int id, String string);
 
     /**
      * 显示错误
@@ -82,7 +84,7 @@ public interface IOnlyActivity<P extends OnlyPresenter> {
      * @param id
      * @param stringId
      */
-    void showError(int id, int stringId);
+    void showError(@IdRes int id, @StringRes int stringId);
 
     /**
      * 显示错误
@@ -90,7 +92,7 @@ public interface IOnlyActivity<P extends OnlyPresenter> {
      * @param id
      * @param string
      */
-    void showError(int id, String string);
+    void showError(@IdRes int id, String string);
 
     /**
      * 获取显示状态

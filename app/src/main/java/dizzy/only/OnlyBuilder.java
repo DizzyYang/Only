@@ -1,6 +1,8 @@
 package dizzy.only;
 
 import android.app.Activity;
+import android.support.annotation.ColorRes;
+import android.support.annotation.LayoutRes;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +67,7 @@ public class OnlyBuilder {
      *
      * @param onlyBackground
      */
-    public void setOnlyBackground(int onlyBackground) {
+    public void setOnlyBackground(@ColorRes int onlyBackground) {
         this.mOnlyBackground = onlyBackground;
     }
 
@@ -91,7 +93,7 @@ public class OnlyBuilder {
     }
 
     /**
-     * 设置状态栏色深
+     * 控制状态栏色深
      *
      * @param onlyStatusBarDark
      */
@@ -108,7 +110,7 @@ public class OnlyBuilder {
      *
      * @param onlyStatusBarColor
      */
-    public void setOnlyStatusBarColor(int onlyStatusBarColor) {
+    public void setOnlyStatusBarColor(@ColorRes int onlyStatusBarColor) {
         this.mOnlyStatusBarColor = onlyStatusBarColor;
     }
 
@@ -138,7 +140,7 @@ public class OnlyBuilder {
      *
      * @param onlyToolbarColor
      */
-    public void setOnlyToolbarColor(int onlyToolbarColor) {
+    public void setOnlyToolbarColor(@ColorRes int onlyToolbarColor) {
         this.mOnlyToolbarColor = onlyToolbarColor;
     }
 
@@ -168,7 +170,7 @@ public class OnlyBuilder {
      *
      * @param onlyLoadingId
      */
-    public void setOnlyLoadingId(int onlyLoadingId) {
+    public void setOnlyLoadingId(@LayoutRes int onlyLoadingId) {
         this.mOnlyLoadingId = onlyLoadingId;
     }
 
@@ -184,7 +186,7 @@ public class OnlyBuilder {
      *
      * @param onlyContentId
      */
-    public void setOnlyContentId(int onlyContentId) {
+    public void setOnlyContentId(@LayoutRes int onlyContentId) {
         this.mOnlyContentId = onlyContentId;
     }
 
@@ -197,7 +199,7 @@ public class OnlyBuilder {
      *
      * @param onlyEmptyId
      */
-    public void setOnlyEmptyId(int onlyEmptyId) {
+    public void setOnlyEmptyId(@LayoutRes int onlyEmptyId) {
         this.mOnlyEmptyId = onlyEmptyId;
     }
 
@@ -213,7 +215,7 @@ public class OnlyBuilder {
      *
      * @param onlyErrorId
      */
-    public void setOnlyErrorId(int onlyErrorId) {
+    public void setOnlyErrorId(@LayoutRes int onlyErrorId) {
         this.mOnlyErrorId = onlyErrorId;
     }
 
