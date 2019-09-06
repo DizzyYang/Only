@@ -2,6 +2,7 @@ package dizzy.only;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import dizzy.only.utils.KeyUtils;
 public abstract class OnlyFragment<P extends OnlyPresenter> extends Fragment implements IOnlyFragment<P> {
 
     private OnlyPromptDialog mOnlyPromptDialog;
+    private View mView;
     private Unbinder mUnbinder;
     private boolean mOnlyLayoutState;
     private OnlyStateView mOnlyStateView;
@@ -38,38 +40,8 @@ public abstract class OnlyFragment<P extends OnlyPresenter> extends Fragment imp
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        OnlyBuilder onlyBuilder = new OnlyBuilder(OnlyHelper.getIOnlyView(),
-                new OnlyStateView.OnFocusListener() {
-                    @Override
-                    public void onFocus() {
-                        onlyFocus();
-                    }
-                },
-                new OnlyStateView.OnEmptyListener() {
-                    @Override
-                    public void onEmpty() {
-                        onlyEmpty();
-                    }
-                },
-                new OnlyStateView.OnErrorListener() {
-                    @Override
-                    public void onError() {
-                        onlyError();
-                    }
-                });
-        View view = onlyBuilder(onlyBuilder).create(getActivity());
-        if (view != null) {
-            mUnbinder = ButterKnife.bind(this, view);
-            mOnlyLayoutState = onlyBuilder.getOnlyLayoutState();
-            mOnlyStateView = onlyBuilder.getOnlyStateView();
-        }
-        return view;
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         mOnlyPresenter = onlyPresenter();
         if (mOnlyPresenter != null) {
             mOnlyPresenter.onlyAttach(this);
@@ -81,6 +53,51 @@ public abstract class OnlyFragment<P extends OnlyPresenter> extends Fragment imp
             if (mOnlyPresenter != null) {
                 mOnlyPresenter.onlyExtras(bundle);
             }
+        }
+    }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        if (mView == null) {
+            OnlyBuilder onlyBuilder = new OnlyBuilder(OnlyHelper.getIOnlyView(),
+                    new OnlyStateView.OnFocusListener() {
+                        @Override
+                        public void onFocus() {
+                            onlyFocus();
+                        }
+                    },
+                    new OnlyStateView.OnEmptyListener() {
+                        @Override
+                        public void onEmpty() {
+                            onlyEmpty();
+                        }
+                    },
+                    new OnlyStateView.OnErrorListener() {
+                        @Override
+                        public void onError() {
+                            onlyError();
+                        }
+                    });
+            mView = onlyBuilder(onlyBuilder).create(getActivity());
+            if (mView != null) {
+                mUnbinder = ButterKnife.bind(this, mView);
+                mOnlyLayoutState = onlyBuilder.getOnlyLayoutState();
+                mOnlyStateView = onlyBuilder.getOnlyStateView();
+            }
+        } else {
+            ViewGroup parent = (ViewGroup) mView.getParent();
+            if (parent != null) {
+                parent.removeView(mView);
+            }
+        }
+        return mView;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if (mOnlyCreate) {
+            return;
         }
         onlyCreate(savedInstanceState);
         mOnlyCreate = true;
@@ -205,11 +222,10 @@ public abstract class OnlyFragment<P extends OnlyPresenter> extends Fragment imp
     }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
+    public void onDestroy() {
+        super.onDestroy();
         if (mOnlyPresenter != null) {
             mOnlyPresenter.onlyDestroy();
-            mOnlyPresenter.onlyDetach();
         }
         if (mUnbinder != null) {
             mUnbinder.unbind();

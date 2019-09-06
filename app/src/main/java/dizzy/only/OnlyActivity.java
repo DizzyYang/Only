@@ -3,7 +3,10 @@ package dizzy.only;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
 import android.view.View;
+import android.view.ViewConfiguration;
 import butterknife.ButterKnife;
 import dizzy.only.impl.IOnlyActivity;
 import dizzy.only.prompt.OnlyPromptDialog;
@@ -19,6 +22,9 @@ public abstract class OnlyActivity<P extends OnlyPresenter> extends AppCompatAct
 
     private OnlyPromptDialog mOnlyPromptDialog;
     private boolean mOnlyLayoutState;
+    private boolean mOnlySwipeBack;
+    private VelocityTracker mVelocityTracker;
+    private MotionEvent mMotionEvent;
     private OnlyStateView mOnlyStateView;
     private P mOnlyPresenter;
 
@@ -59,6 +65,7 @@ public abstract class OnlyActivity<P extends OnlyPresenter> extends AppCompatAct
             setContentView(view);
             ButterKnife.bind(this);
             mOnlyLayoutState = onlyBuilder.getOnlyLayoutState();
+            mOnlySwipeBack = onlyBuilder.getOnlySwipeBack();
             mOnlyStateView = onlyBuilder.getOnlyStateView();
         }
         mOnlyPresenter = onlyPresenter();
@@ -183,11 +190,47 @@ public abstract class OnlyActivity<P extends OnlyPresenter> extends AppCompatAct
     }
 
     @Override
+    public boolean onlySwipeBack() {
+        return mOnlySwipeBack;
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (!onlySwipeBack()) {
+            return super.dispatchTouchEvent(ev);
+        }
+        if (mVelocityTracker == null) {
+            mVelocityTracker = VelocityTracker.obtain();
+        }
+        mVelocityTracker.addMovement(ev);
+        if (ev.getActionMasked() == MotionEvent.ACTION_DOWN) {
+            if (mMotionEvent != null) {
+                mMotionEvent.recycle();
+            }
+            mMotionEvent = MotionEvent.obtain(ev);
+        } else if (ev.getActionMasked() == MotionEvent.ACTION_UP) {
+            int pointerId = ev.getPointerId(0);
+            ViewConfiguration configuration = ViewConfiguration.get(this);
+            int minimumFlingVelocity = configuration.getScaledMinimumFlingVelocity();
+            int maximumFlingVelocity = configuration.getScaledMaximumFlingVelocity();
+            mVelocityTracker.computeCurrentVelocity(1000, maximumFlingVelocity);
+            float xVelocity = mVelocityTracker.getXVelocity(pointerId);
+            if (mMotionEvent.getX() <= 50 && ev.getX() - mMotionEvent.getX() >= 250
+                    && Math.abs(xVelocity) >= minimumFlingVelocity) {
+                onBackPressed();
+            }
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         if (mOnlyPresenter != null) {
             mOnlyPresenter.onlyDestroy();
-            mOnlyPresenter.onlyDetach();
+        }
+        if (mVelocityTracker != null) {
+            mVelocityTracker.recycle();
         }
         KeyUtils.closeKey(this);
     }

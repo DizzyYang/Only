@@ -47,9 +47,4 @@ public interface IOnlyPresenter<V> {
      */
     void onlyDestroy();
 
-    /**
-     * 移除视图
-     */
-    void onlyDetach();
-
 }

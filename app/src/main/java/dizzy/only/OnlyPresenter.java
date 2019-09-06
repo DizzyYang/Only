@@ -41,10 +41,6 @@ public class OnlyPresenter<V> implements IOnlyPresenter<V> {
 
     @Override
     public void onlyDestroy() {
-    }
-
-    @Override
-    public void onlyDetach() {
         if (mOnlyView != null) {
             mOnlyView.clear();
             mOnlyView = null;

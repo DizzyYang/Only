@@ -1,14 +1,27 @@
 <resources>
 
-    <style name="OnlyTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowAnimationStyle">@style/OnlyAnimation</item>
+    <style name="OnlyTheme" parent="Theme.AppCompat.Light.NoActionBar" />
+
+    <style name="OnlyTheme.Horizontal">
+        <item name="android:windowAnimationStyle">@style/OnlyHorizontal</item>
     </style>
 
-    <style name="OnlyAnimation" parent="@android:style/Animation.Activity">
-        <item name="android:activityOpenEnterAnimation">@anim/activity_open_enter</item>
-        <item name="android:activityOpenExitAnimation">@anim/activity_open_exit</item>
-        <item name="android:activityCloseEnterAnimation">@anim/activity_close_enter</item>
-        <item name="android:activityCloseExitAnimation">@anim/activity_close_exit</item>
+    <style name="OnlyTheme.Vertical">
+        <item name="android:windowAnimationStyle">@style/OnlyVertical</item>
+    </style>
+
+    <style name="OnlyHorizontal" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/horizontal_open_enter</item>
+        <item name="android:activityOpenExitAnimation">@anim/horizontal_open_exit</item>
+        <item name="android:activityCloseEnterAnimation">@anim/horizontal_close_enter</item>
+        <item name="android:activityCloseExitAnimation">@anim/horizontal_close_exit</item>
+    </style>
+
+    <style name="OnlyVertical" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/vertical_open_enter</item>
+        <item name="android:activityOpenExitAnimation">@anim/vertical_open_exit</item>
+        <item name="android:activityCloseEnterAnimation">@anim/vertical_close_enter</item>
+        <item name="android:activityCloseExitAnimation">@anim/vertical_close_exit</item>
     </style>
 
 </resources>

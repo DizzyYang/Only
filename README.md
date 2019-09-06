@@ -21,7 +21,7 @@
         }
 
         dependencies {
-            api 'com.github.DizzyYang:Only:2.1.6'
+            api 'com.github.DizzyYang:Only:2.3.0'
             annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0'
             annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
         }

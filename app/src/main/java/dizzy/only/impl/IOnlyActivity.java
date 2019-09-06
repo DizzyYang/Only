@@ -116,4 +116,11 @@ public interface IOnlyActivity<P extends OnlyPresenter> {
      */
     void onlyError();
 
+    /**
+     * 滑动返回
+     *
+     * @return true：返回、false：不返回
+     */
+    boolean onlySwipeBack();
+
 }

@@ -48,6 +48,7 @@ public class OnlyBuilder {
     private int mOnlyContentId;
     private int mOnlyEmptyId;
     private int mOnlyErrorId;
+    private boolean mOnlySwipeBack;
 
     /**
      * 设置根布局类型
@@ -224,6 +225,19 @@ public class OnlyBuilder {
             return mOnlyErrorId;
         }
         return mIOnlyView.onlyErrorId();
+    }
+
+    /**
+     * 滑动返回
+     *
+     * @param onlySwipeBack
+     */
+    public void setOnlySwipeBack(boolean onlySwipeBack) {
+        this.mOnlySwipeBack = onlySwipeBack;
+    }
+
+    public boolean getOnlySwipeBack() {
+        return mOnlySwipeBack;
     }
 
     private OnlyStatusBarView mOnlyStatusBarView;

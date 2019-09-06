@@ -13,7 +13,7 @@ import leo.android.cglib.proxy.MethodProxy;
  * 2019/6/6 16:16
  * 简介：OnlyHelper
  */
-class OnlyHelper {
+public class OnlyHelper {
 
     private static Application mApplication;
     private static IOnlyView mIOnlyView;
