@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 230
-        versionName "2.3.0"
+        versionCode 235
+        versionName "2.3.5"
     }
     buildTypes {
         release {
@@ -38,10 +38,10 @@ dependencies {
     api 'com.lzy.net:okgo:3.0.4'
     api "com.google.code.gson:gson:2.8.5"
     api 'com.github.bumptech.glide:glide:4.9.0'
-    api 'com.github.DizzyYang:OnlyToolbarView:1.8.0'
-    api 'com.github.DizzyYang:OnlyStatusBarUtils:1.8.0'
-    api 'com.github.DizzyYang:OnlyStateView:1.8.0'
-    api 'com.github.DizzyYang:OnlyPromptDialog:1.8.0'
+    api 'com.github.DizzyYang:OnlyToolbarView:1.8.5'
+    api 'com.github.DizzyYang:OnlyStatusBarUtils:1.8.5'
+    api 'com.github.DizzyYang:OnlyStateView:1.8.5'
+    api 'com.github.DizzyYang:OnlyPromptDialog:1.8.5'
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50'
 }
 
