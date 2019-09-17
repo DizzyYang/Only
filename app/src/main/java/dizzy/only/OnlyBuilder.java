@@ -263,42 +263,62 @@ public class OnlyBuilder {
                     return View.inflate(activity, getOnlyContentId(), null);
                 case OnlyLayoutType.LINEAR:
                     if (getOnlyStatusBarState() || getOnlyToolbarState() || getOnlyLayoutState()) {
-                        LinearLayout linearLayout = null;
+                        LinearLayout rootLayout = null;
                         if (getOnlyStatusBarState() || getOnlyToolbarState()) {
-                            linearLayout = new LinearLayout(activity);
-                            linearLayout.setLayoutParams(getMhMhParams());
-                            linearLayout.setOrientation(LinearLayout.VERTICAL);
-                            linearLayout.setBackgroundColor(getOnlyBackground());
-                            linearLayout.setId(R.id.only_root_layout);
+                            rootLayout = new LinearLayout(activity);
+                            rootLayout.setLayoutParams(getMhMhParams());
+                            rootLayout.setOrientation(LinearLayout.VERTICAL);
+                            rootLayout.setBackgroundColor(getOnlyBackground());
+                            rootLayout.setId(R.id.only_root_layout);
+                        }
+                        LinearLayout actionLayout = null;
+                        if (getOnlyStatusBarState() && getOnlyToolbarState()) {
+                            actionLayout = new LinearLayout(activity);
+                            actionLayout.setLayoutParams(getMhWpParams());
+                            actionLayout.setOrientation(LinearLayout.VERTICAL);
+                            actionLayout.setId(R.id.only_action_layout);
                         }
                         if (getOnlyStatusBarState()) {
                             mOnlyStatusBarView = getOnlyStatusBarView(activity);
-                            if (linearLayout != null) {
-                                linearLayout.addView(mOnlyStatusBarView);
+                            if (actionLayout != null) {
+                                actionLayout.addView(mOnlyStatusBarView);
+                            } else {
+                                if (rootLayout != null) {
+                                    rootLayout.addView(mOnlyStatusBarView);
+                                }
                             }
                         }
                         if (getOnlyToolbarState()) {
                             mOnlyToolbarView = getOnlyToolbarView(activity);
-                            if (linearLayout != null) {
-                                linearLayout.addView(mOnlyToolbarView);
+                            if (actionLayout != null) {
+                                actionLayout.addView(mOnlyToolbarView);
+                            } else {
+                                if (rootLayout != null) {
+                                    rootLayout.addView(mOnlyToolbarView);
+                                }
+                            }
+                        }
+                        if (actionLayout != null) {
+                            if (rootLayout != null) {
+                                rootLayout.addView(actionLayout);
                             }
                         }
                         if (getOnlyLayoutState()) {
                             mOnlyStateView = getOnlyStateView(activity);
-                            if (linearLayout != null) {
-                                linearLayout.addView(mOnlyStateView);
-                                return linearLayout;
+                            if (rootLayout != null) {
+                                rootLayout.addView(mOnlyStateView);
+                                return rootLayout;
                             } else {
                                 mOnlyStateView.setBackgroundColor(getOnlyBackground());
                                 return mOnlyStateView;
                             }
                         } else {
-                            if (linearLayout != null) {
-                                linearLayout.addView(
+                            if (rootLayout != null) {
+                                rootLayout.addView(
                                         View.inflate(activity, getOnlyContentId(), null),
                                         getMhMhParams()
                                 );
-                                return linearLayout;
+                                return rootLayout;
                             }
                         }
                     } else {
@@ -306,60 +326,61 @@ public class OnlyBuilder {
                     }
                 case OnlyLayoutType.FRAME:
                     if (getOnlyStatusBarState() || getOnlyToolbarState() || getOnlyLayoutState()) {
-                        FrameLayout frameLayout = null;
+                        FrameLayout rootLayout = null;
                         if (getOnlyStatusBarState() || getOnlyToolbarState()) {
-                            frameLayout = new FrameLayout(activity);
-                            frameLayout.setLayoutParams(getMhMhParams());
-                            frameLayout.setBackgroundColor(getOnlyBackground());
-                            frameLayout.setId(R.id.only_root_layout);
+                            rootLayout = new FrameLayout(activity);
+                            rootLayout.setLayoutParams(getMhMhParams());
+                            rootLayout.setBackgroundColor(getOnlyBackground());
+                            rootLayout.setId(R.id.only_root_layout);
                         }
-                        LinearLayout linearLayout = null;
+                        LinearLayout actionLayout = null;
                         if (getOnlyStatusBarState() && getOnlyToolbarState()) {
-                            linearLayout = new LinearLayout(activity);
-                            linearLayout.setLayoutParams(getMhWpParams());
-                            linearLayout.setOrientation(LinearLayout.VERTICAL);
+                            actionLayout = new LinearLayout(activity);
+                            actionLayout.setLayoutParams(getMhWpParams());
+                            actionLayout.setOrientation(LinearLayout.VERTICAL);
+                            actionLayout.setId(R.id.only_action_layout);
                         }
                         if (getOnlyStatusBarState()) {
                             mOnlyStatusBarView = getOnlyStatusBarView(activity);
-                            if (linearLayout != null) {
-                                linearLayout.addView(mOnlyStatusBarView);
+                            if (actionLayout != null) {
+                                actionLayout.addView(mOnlyStatusBarView);
                             } else {
-                                if (frameLayout != null) {
-                                    frameLayout.addView(mOnlyStatusBarView);
+                                if (rootLayout != null) {
+                                    rootLayout.addView(mOnlyStatusBarView);
                                 }
                             }
                         }
                         if (getOnlyToolbarState()) {
                             mOnlyToolbarView = getOnlyToolbarView(activity);
-                            if (linearLayout != null) {
-                                linearLayout.addView(mOnlyToolbarView);
+                            if (actionLayout != null) {
+                                actionLayout.addView(mOnlyToolbarView);
                             } else {
-                                if (frameLayout != null) {
-                                    frameLayout.addView(mOnlyToolbarView);
+                                if (rootLayout != null) {
+                                    rootLayout.addView(mOnlyToolbarView);
                                 }
                             }
                         }
-                        if (linearLayout != null) {
-                            if (frameLayout != null) {
-                                frameLayout.addView(linearLayout);
+                        if (actionLayout != null) {
+                            if (rootLayout != null) {
+                                rootLayout.addView(actionLayout);
                             }
                         }
                         if (getOnlyLayoutState()) {
                             mOnlyStateView = getOnlyStateView(activity);
-                            if (frameLayout != null) {
-                                frameLayout.addView(mOnlyStateView, 0);
-                                return frameLayout;
+                            if (rootLayout != null) {
+                                rootLayout.addView(mOnlyStateView, 0);
+                                return rootLayout;
                             } else {
                                 mOnlyStateView.setBackgroundColor(getOnlyBackground());
                                 return mOnlyStateView;
                             }
                         } else {
-                            if (frameLayout != null) {
-                                frameLayout.addView(
+                            if (rootLayout != null) {
+                                rootLayout.addView(
                                         View.inflate(activity, getOnlyContentId(), null), 0,
                                         getMhMhParams()
                                 );
-                                return frameLayout;
+                                return rootLayout;
                             }
                         }
                     } else {
