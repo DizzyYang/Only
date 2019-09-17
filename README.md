@@ -1,15 +1,7 @@
 ﻿# Only
 
 
-  步骤1：添加插件和jitpack库到你的根build.gradle
-
-        buildscript {
-            dependencies {
-                ...
-                classpath 'com.jakewharton:butterknife-gradle-plugin:9.0.0'
-                classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.4'
-            }
-        }
+  步骤1：添加jitpack库到你的根build.gradle
 
         allprojects {
             repositories {
@@ -20,9 +12,6 @@
 
   步骤2：app的build.gradle添加依赖关系
 
-        apply plugin: 'com.jakewharton.butterknife'
-        apply plugin: 'com.hujiang.android-aspectjx'
-
         android {
             ...
             compileOptions {
@@ -32,7 +21,7 @@
         }
 
         dependencies {
-            api 'com.github.DizzyYang:Only:2.3.6'
+            api 'com.github.DizzyYang:Only:2.3.7'
             annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0'
             annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
         }
