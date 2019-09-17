@@ -15,14 +15,15 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
-            proguardFile('pro/proguard-butterknife.pro')
             proguardFile('pro/proguard-support-v7.pro')
+            proguardFile('pro/proguard-butterknife.pro')
+            proguardFile('pro/proguard-aspectj.pro')
+            proguardFile('pro/proguard-cglib.pro')
             proguardFile('pro/proguard-only.pro')
             proguardFile('pro/proguard-okgo.pro')
             proguardFile('pro/proguard-gson.pro')
             proguardFile('pro/proguard-glide.pro')
             proguardFile('pro/proguard-brvah.pro')
-            proguardFile('pro/proguard-cglib.pro')
         }
     }
 }
